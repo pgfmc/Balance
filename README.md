@@ -1,0 +1,2 @@
+# Balance
+Balances Spigot plugin
