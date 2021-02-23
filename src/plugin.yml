@@ -1,0 +1,6 @@
+name: Balance
+version: 4.0.0
+api-version: 1.16
+author: bk
+main: tk.pgfriends.balance.Main
+description: Prevents stealing from chests and dead bodies and creepers from griefing
