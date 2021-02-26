@@ -54,6 +54,7 @@ public class PlayerEvents implements Listener {
 		e.getDrops().clear();
 	}
 	
+	/*
 	@EventHandler
 	public void onPlace(BlockPlaceEvent e)
 	{
@@ -84,5 +85,6 @@ public class PlayerEvents implements Listener {
 			player.sendMessage("test");// player.openInventory(chest.getInventory()); // get the inventory and open it?
 		}
 	}
+	*/
 
 }
