@@ -6,15 +6,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
+import org.bukkit.block.data.Directional;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import tk.pgfriends.balance.Main;
@@ -67,6 +69,31 @@ public class PlayerEvents implements Listener {
 			for (int z = -1; z < 2; z++)
 			{
 				Location signLoc = new Location(loc.getWorld(), loc.getX() + x, loc.getY(), loc.getZ() + z);
+				BlockFace blockFace = ((Directional) signLoc.getBlock().getBlockData()).getFacing();
+				
+				if (x == 0 && z == -1)
+				{
+					if (blockFace != BlockFace.NORTH) { continue; }
+				}
+				
+				if (x == 0 && z == 1)
+				{
+					if (blockFace != BlockFace.SOUTH) { continue; }
+				}
+				
+				if (x == -1 && z == 0)
+				{
+					if (blockFace != BlockFace.WEST) { continue; }
+				}
+					
+				if (x == 1 && z == 0)
+				{
+					if (blockFace != BlockFace.EAST) { continue; }
+				}
+				
+				if (x == z) { return; } // This would be NORTHEAST, SOUTHWEST, etc. (We only want to check the 4 faces of the chest, not the corners)
+				
+				
 				
 				if (signLoc.getBlock().getType().equals(Material.OAK_WALL_SIGN))
 				{
@@ -74,7 +101,7 @@ public class PlayerEvents implements Listener {
 					
 					for (String line : sign.getLines())
 					{
-						if (e.getPlayer().getName().equals(line))
+						if (e.getPlayer().getName().toLowerCase().equals(line.toLowerCase()))
 						{
 							return;
 						}
@@ -97,6 +124,7 @@ public class PlayerEvents implements Listener {
 		
 		chest.setLock(player.getUniqueId().toString()); // check to see if lock of chest matches uuid of player, if so, remove lock temporarily -- no?
 	}
+	*/
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e)
@@ -116,6 +144,6 @@ public class PlayerEvents implements Listener {
 			player.sendMessage("test");// player.openInventory(chest.getInventory()); // get the inventory and open it?
 		}
 	}
-	*/
+	
 
 }
