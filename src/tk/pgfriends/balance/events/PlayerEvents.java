@@ -3,18 +3,18 @@ package tk.pgfriends.balance.events;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
 
 import tk.pgfriends.balance.Main;
@@ -52,6 +52,37 @@ public class PlayerEvents implements Listener {
 		}
 		
 		e.getDrops().clear();
+	}
+	
+	
+	@EventHandler
+	public void onOpenChest(InventoryOpenEvent e)
+	{
+		if (!(e.getInventory().getHolder() instanceof Chest)) { return; }
+		
+		Location loc = e.getInventory().getLocation();
+		
+		for (int x = -1; x < 2; x++)
+		{
+			for (int z = -1; z < 2; z++)
+			{
+				Location signLoc = new Location(loc.getWorld(), loc.getX() + x, loc.getY(), loc.getZ() + z);
+				
+				if (signLoc.getBlock().getType().equals(Material.OAK_WALL_SIGN))
+				{
+					Sign sign = (Sign) signLoc.getBlock().getState();
+					
+					for (String line : sign.getLines())
+					{
+						if (e.getPlayer().getName().equals(line))
+						{
+							return;
+						}
+					}
+				}
+			}
+		}
+		e.setCancelled(true);
 	}
 	
 	/*
