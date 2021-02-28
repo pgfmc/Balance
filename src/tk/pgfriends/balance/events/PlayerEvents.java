@@ -69,7 +69,11 @@ public class PlayerEvents implements Listener {
 			for (int z = -1; z < 2; z++)
 			{
 				Location signLoc = new Location(loc.getWorld(), loc.getX() + x, loc.getY(), loc.getZ() + z);
-				BlockFace blockFace = ((Directional) signLoc.getBlock().getBlockData()).getFacing();
+				
+				if (!signLoc.getBlock().getType().equals(Material.OAK_WALL_SIGN)) { continue; }
+				
+				Directional di = (Directional) signLoc.getBlock().getBlockData();
+				BlockFace blockFace = di.getFacing();
 				
 				if (x == 0 && z == -1)
 				{
@@ -91,7 +95,7 @@ public class PlayerEvents implements Listener {
 					if (blockFace != BlockFace.EAST) { continue; }
 				}
 				
-				if (x == z) { return; } // This would be NORTHEAST, SOUTHWEST, etc. (We only want to check the 4 faces of the chest, not the corners)
+				if (x == z || x == z * -1) { continue; } // This would be NORTHEAST, SOUTHWEST, etc. (We only want to check the 4 faces of the chest, not the corners)
 				
 				
 				
@@ -111,20 +115,6 @@ public class PlayerEvents implements Listener {
 		}
 		e.setCancelled(true);
 	}
-	
-	/*
-	@EventHandler
-	public void onPlace(BlockPlaceEvent e)
-	{
-		if (!e.getBlockPlaced().getType().equals(Material.CHEST)) { return; }
-		if (!e.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) { return; }
-		
-		Player player = e.getPlayer();
-		Chest chest = (Chest) e.getBlockPlaced().getState();
-		
-		chest.setLock(player.getUniqueId().toString()); // check to see if lock of chest matches uuid of player, if so, remove lock temporarily -- no?
-	}
-	*/
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e)
