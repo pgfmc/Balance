@@ -119,7 +119,7 @@ public class PlayerEvents implements Listener {
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e)
 	{
-		
+		if (e.getClickedBlock() == null) { return; }
 		if (!e.getClickedBlock().getType().equals(Material.CHEST)) { return; }
 		if (e.getClickedBlock().getState().equals(null)) { return; }
 		Chest chest = (Chest) e.getClickedBlock().getState();

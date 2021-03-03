@@ -1,5 +1,5 @@
 name: Balance
-version: 5.0.0
+version: 5.0.1
 api-version: 1.16
 author: bk
 main: tk.pgfriends.balance.Main
