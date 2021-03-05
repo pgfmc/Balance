@@ -136,7 +136,5 @@ public class PlayerEvents implements Listener {
 	}
 	
 	*/
-	
-	public void onCooldown()
 
 }
