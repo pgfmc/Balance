@@ -56,7 +56,7 @@ public class PlayerEvents implements Listener {
 		e.getDrops().clear();
 	}
 	
-	
+	/*
 	@EventHandler
 	public void onOpenChest(InventoryOpenEvent e)
 	{
@@ -135,5 +135,8 @@ public class PlayerEvents implements Listener {
 		}
 	}
 	
+	*/
+	
+	public void onCooldown()
 
 }
