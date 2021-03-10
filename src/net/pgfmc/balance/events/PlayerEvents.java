@@ -4,20 +4,14 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.Chest;
-import org.bukkit.block.Sign;
-import org.bukkit.block.data.Directional;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 import net.pgfmc.balance.Main;
 
@@ -29,15 +23,16 @@ public class PlayerEvents implements Listener {
 		List<ItemStack> drops = e.getDrops();
 		ItemStack[] dropsArray = new ItemStack[drops.size()];
 		drops.toArray(dropsArray);
-		Player player = e.getEntity();
-		Location loc = player.getLocation();
-		World world = player.getWorld();
+		
+		Player p = e.getEntity();
+		Location loc = p.getLocation();
+		World world = p.getWorld();
 		
 		for (ItemStack drop : dropsArray)
 		{
-			Item dropItem = world.dropItemNaturally(loc.clone().add(0.5, 1.2, 0.5), drop);
-			dropItem.setOwner(player.getUniqueId());
-			// dropItem.setVelocity((new Vector())); // enable if items glitch due to velocity
+			Item dropItem = world.dropItemNaturally(loc.clone().add(0, 0.5, 0), drop);
+			dropItem.setOwner(p.getUniqueId());
+			dropItem.setVelocity((new Vector())); // enable if items glitch due to velocity
 			
 			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
 				
@@ -50,10 +45,12 @@ public class PlayerEvents implements Listener {
 					}
 				}
 				
-			}, 20 * 60);
+			}, 20 * 120);
 		}
 		
 		e.getDrops().clear();
+		p.sendMessage("§cYour dropped items are protected for 120 seconds.");
+		p.sendMessage("§c§o/back to return to your items.");
 	}
 	
 	/*
