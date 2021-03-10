@@ -115,26 +115,7 @@ public class PlayerEvents implements Listener {
 		}
 		e.setCancelled(true);
 	}
-	
-	@EventHandler
-	public void onInteract(PlayerInteractEvent e)
-	{
-		if (e.getClickedBlock() == null) { return; }
-		if (!e.getClickedBlock().getType().equals(Material.CHEST)) { return; }
-		if (e.getClickedBlock().getState().equals(null)) { return; }
-		Chest chest = (Chest) e.getClickedBlock().getState();
-		if (!chest.isLocked()) { return; }
-		
-		Player player = e.getPlayer();
-		String lock = chest.getLock();
-		
-		
-		if (lock.equals(player.getUniqueId().toString()))
-		{
-			player.sendMessage("test");// player.openInventory(chest.getInventory()); // get the inventory and open it?
-		}
-	}
-	
 	*/
+	
 
 }
