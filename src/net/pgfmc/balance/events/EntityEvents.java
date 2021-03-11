@@ -18,10 +18,10 @@ public class EntityEvents implements Listener {
 	{
 		
 		Location loc = e.getLocation();
-		int r = 128; // Radius to check for - should be the max radius for protected land
+		int r = 10; // Radius to check for - should be the max radius for protected land
 		
 		List<Material> mat = Arrays.asList(Material.LAPIS_BLOCK, Material.GOLD_BLOCK, Material.IRON_BLOCK, Material.COAL_BLOCK, Material.OBSIDIAN, Material.CRYING_OBSIDIAN, Material.DIAMOND_BLOCK, Material.EMERALD_BLOCK, Material.BEACON, Material.ENCHANTING_TABLE, Material.ANVIL, Material.REDSTONE_BLOCK, Material.QUARTZ_BLOCK, Material.PACKED_ICE, Material.BLUE_ICE, Material.CONDUIT, Material.NETHERITE_BLOCK, Material.LODESTONE, Material.RESPAWN_ANCHOR, Material.SKELETON_SKULL, Material.SKELETON_WALL_SKULL, Material.WITHER_SKELETON_SKULL, Material.WITHER_SKELETON_WALL_SKULL, Material.CREEPER_HEAD, Material.CREEPER_WALL_HEAD, Material.DRAGON_HEAD, Material.DRAGON_WALL_HEAD, Material.ZOMBIE_HEAD, Material.ZOMBIE_WALL_HEAD, Material.COAL_BLOCK, Material.ENDER_CHEST); // Material of blocks to check for
-		List<Double> wealthPercent = Arrays.asList(0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.500, .50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50);
+		// List<Double> wealthPercent = Arrays.asList(0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.500, .50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50, 0.50);
 		List<Block> blocks = new ArrayList<>(); // List to add all blocks to in radius of entity explosion
 	        
         for (int x = loc.getBlockX() - r; x <= loc.getBlockX() + r; x++)
@@ -32,7 +32,9 @@ public class EntityEvents implements Listener {
                 {
                 	if (mat.contains(loc.getWorld().getBlockAt(x, y, z).getType()))
                 	{
-                		blocks.add(loc.getWorld().getBlockAt(x, y, z));
+                		e.setCancelled(true);
+                		return;
+                		// blocks.add(loc.getWorld().getBlockAt(x, y, z));
                 	}
                 }
             }
@@ -40,6 +42,8 @@ public class EntityEvents implements Listener {
         
         
         
+        
+        /*
         int rBlock = 10; // How close should the wealth be to each other?
         List<Block> protBlocks = new ArrayList<>(); // List to add all blocks to in radius of entity explosion
         List<Object> radiusHolder = new ArrayList<>();
@@ -88,6 +92,8 @@ public class EntityEvents implements Listener {
                 	totalRadius += (wealth * 10) * (Math.sqrt(n * wealth));
                 	n = 0;
                 }
+                
+                System.out.println(totalRadius); // debug
 
                 
                 // Save the variables before reset
@@ -127,7 +133,7 @@ public class EntityEvents implements Listener {
 
         
         
-        
+        */
 	}
 
 }
