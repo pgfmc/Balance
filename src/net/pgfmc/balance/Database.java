@@ -5,12 +5,14 @@ import java.io.IOException;
 
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 public class Database {
 	
-	public static void save(Location loc, FileConfiguration db, File file)
+	public static void save(Player owner, Location loc, FileConfiguration db, File file)
 	{
 		db.set(loc.toString() + ".isLocked", false);
+		db.set(loc.toString() + ".owner", owner.getUniqueId().toString());
 		
 		try {
 			db.save(file);

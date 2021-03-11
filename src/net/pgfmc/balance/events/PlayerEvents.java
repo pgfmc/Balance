@@ -136,7 +136,7 @@ public class PlayerEvents implements Listener {
 		if (!e.getBlock().getType().equals(Material.CHEST)) { return; }
 		
 		Location loc = e.getBlock().getLocation();
-		Database.save(loc, database, file);
+		Database.save(e.getPlayer(), loc, database, file);
 	}
 	
 
