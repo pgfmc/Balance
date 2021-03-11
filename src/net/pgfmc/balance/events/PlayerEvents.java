@@ -1,21 +1,35 @@
 package net.pgfmc.balance.events;
 
+import java.io.File;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Chest;
+import org.bukkit.block.Sign;
+import org.bukkit.block.data.Directional;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
+import net.pgfmc.balance.Database;
 import net.pgfmc.balance.Main;
 
 public class PlayerEvents implements Listener {
+	
+	File file = new File(Main.plugin.getDataFolder() + File.separator + "database.yml"); // Creates a File object
+	FileConfiguration database = YamlConfiguration.loadConfiguration(file); // Turns the File object into YAML and loads data
 	
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e)
@@ -53,13 +67,15 @@ public class PlayerEvents implements Listener {
 		p.sendMessage("§c§o/back to return to your items.");
 	}
 	
-	/*
+	
 	@EventHandler
 	public void onOpenChest(InventoryOpenEvent e)
 	{
 		if (!(e.getInventory().getHolder() instanceof Chest)) { return; }
 		
 		Location loc = e.getInventory().getLocation();
+		
+		if (!Database.isLocked(loc, database, file)) { return; }
 		
 		for (int x = -1; x < 2; x++)
 		{
@@ -112,7 +128,16 @@ public class PlayerEvents implements Listener {
 		}
 		e.setCancelled(true);
 	}
-	*/
+	
+	@EventHandler
+	public void onChestPlace(BlockPlaceEvent e)
+	{
+		
+		if (!e.getBlock().getType().equals(Material.CHEST)) { return; }
+		
+		Location loc = e.getBlock().getLocation();
+		Database.save(loc, database, file);
+	}
 	
 
 }
