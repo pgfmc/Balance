@@ -76,6 +76,7 @@ public class PlayerEvents implements Listener {
 		Location loc = e.getInventory().getLocation();
 		
 		if (!Database.isLocked(loc, database, file)) { return; }
+		if (Database.getOwner(loc, database, file).getUniqueId().equals(e.getPlayer().getUniqueId())) { return; }
 		
 		for (int x = -1; x < 2; x++)
 		{
@@ -137,6 +138,95 @@ public class PlayerEvents implements Listener {
 		
 		Location loc = e.getBlock().getLocation();
 		Database.save(e.getPlayer(), loc, database, file);
+	}
+	
+	public void onSignPlace(BlockPlaceEvent e)
+	{
+		if (!e.getBlock().getType().equals(Material.OAK_WALL_SIGN)) { return; }
+		
+		Directional di = (Directional) e.getBlock().getBlockData();
+		BlockFace blockFace = di.getFacing();
+		
+		Location loc = e.getBlock().getLocation();
+		
+		if (blockFace == BlockFace.NORTH)
+		{
+			loc.setZ(loc.getZ() + 1.0);
+			
+			if (loc.getBlock().getType().equals(Material.CHEST))
+			{
+				if (Database.getOwner(loc, database, file) != null)
+				{
+					if (!Database.getOwner(loc, database, file).getUniqueId().equals(e.getPlayer().getUniqueId()))
+					{
+						e.getPlayer().sendMessage("§c§oYou cannot alter " + Database.getOwner(loc, database, file).getName() + "'s chest!");
+						e.setCancelled(true);
+					}
+					
+					return;
+				}
+			}
+		}
+		
+		if (blockFace == BlockFace.SOUTH)
+		{
+			loc.setZ(loc.getZ() - 1.0);
+			
+			if (loc.getBlock().getType().equals(Material.CHEST))
+			{
+				if (Database.getOwner(loc, database, file) != null)
+				{
+					if (!Database.getOwner(loc, database, file).getUniqueId().equals(e.getPlayer().getUniqueId()))
+					{
+						e.getPlayer().sendMessage("§c§oYou cannot alter " + Database.getOwner(loc, database, file).getName() + "'s chest!");
+						e.setCancelled(true);
+					}
+					
+					return;
+				}
+			}
+
+		}
+		
+		if (blockFace == BlockFace.EAST)
+		{
+			loc.setZ(loc.getX() - 1.0);
+			
+			if (loc.getBlock().getType().equals(Material.CHEST))
+			{
+				if (Database.getOwner(loc, database, file) != null)
+				{
+					if (!Database.getOwner(loc, database, file).getUniqueId().equals(e.getPlayer().getUniqueId()))
+					{
+						e.getPlayer().sendMessage("§c§oYou cannot alter " + Database.getOwner(loc, database, file).getName() + "'s chest!");
+						e.setCancelled(true);
+					}
+					
+					return;
+				}
+			}
+
+		}
+		
+		if (blockFace == BlockFace.WEST)
+		{
+			loc.setZ(loc.getX() + 1.0);
+			
+			if (loc.getBlock().getType().equals(Material.CHEST))
+			{
+				if (Database.getOwner(loc, database, file) != null)
+				{
+					if (!Database.getOwner(loc, database, file).getUniqueId().equals(e.getPlayer().getUniqueId()))
+					{
+						e.getPlayer().sendMessage("§c§oYou cannot alter " + Database.getOwner(loc, database, file).getName() + "'s chest!");
+						e.setCancelled(true);
+					}
+					
+					return;
+				}
+			}
+
+		}
 	}
 	
 
