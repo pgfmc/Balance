@@ -46,6 +46,8 @@ public class PlayerEvents implements Listener {
 		{
 			Item dropItem = world.dropItemNaturally(loc.clone().add(0, 0.5, 0), drop);
 			dropItem.setOwner(p.getUniqueId());
+			dropItem.setGlowing(true);
+			dropItem.setInvulnerable(true);
 			dropItem.setVelocity((new Vector())); // enable if items glitch due to velocity
 			
 			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
