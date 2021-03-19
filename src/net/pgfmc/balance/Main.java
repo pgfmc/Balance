@@ -2,6 +2,7 @@ package net.pgfmc.balance;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import net.pgfmc.balance.commands.Team;
 import net.pgfmc.balance.events.EntityEvents;
 import net.pgfmc.balance.events.PlayerEvents;
 
@@ -16,6 +17,7 @@ public class Main extends JavaPlugin {
 	public void onEnable()
 	{
 		plugin = this;
+		getCommand("team").setExecutor(new Team());
 		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
 		getServer().getPluginManager().registerEvents(new EntityEvents(), this);
 		

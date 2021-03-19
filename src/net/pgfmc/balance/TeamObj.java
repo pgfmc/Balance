@@ -6,13 +6,13 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class Team {
+public class TeamObj {
 	
 	UUID owner;
 	List<UUID> members;
-	List<Team> allies = null; // Defaults to null if no allies
+	List<TeamObj> allies = null; // Defaults to null if no allies
 	
-	public Team(UUID owner, List<UUID> members, List<Team> allies)
+	public TeamObj(UUID owner, List<UUID> members, List<TeamObj> allies)
 	{
 		this.members = members;
 		this.allies = allies;
@@ -20,7 +20,7 @@ public class Team {
 	
 	
 	
-	public Team(UUID owner, List<UUID> members)
+	public TeamObj(UUID owner, List<UUID> members)
 	{
 		this.owner = owner;
 		this.members = members;
@@ -39,12 +39,10 @@ public class Team {
 	}
 	
 	
-	
 	public Player getOwner()
 	{
 		return Bukkit.getPlayer(owner);
 	}
-	
 	
 	
 	public boolean kickMember(Player p)
@@ -62,5 +60,15 @@ public class Team {
 		members.add(p.getUniqueId());
 		return true;
 	}
-
+	
+	
+	public boolean disband(Player sender)
+	{
+		if (!sender.getUniqueId().equals(owner)) { return false; } // You cannot disband a team if you aren't the owner!
+		// TODO delete from save file
+		
+		// return true if save works.
+		
+		return false; // Something bad happened and it didn't disband properly
+	}
 }
