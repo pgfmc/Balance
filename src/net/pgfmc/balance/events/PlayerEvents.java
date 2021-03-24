@@ -14,25 +14,31 @@ import org.bukkit.block.data.Directional;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Item;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
+import net.ess3.api.IEssentials;
 import net.pgfmc.balance.Database;
 import net.pgfmc.balance.Main;
 
 public class PlayerEvents implements Listener {
 	
+	IEssentials ess = (IEssentials) Bukkit.getPluginManager().getPlugin("Essentials"); // loads the essentials plugin
+	
 	File file = new File(Main.plugin.getDataFolder() + File.separator + "database.yml"); // Creates a File object
 	FileConfiguration database = YamlConfiguration.loadConfiguration(file); // Turns the File object into YAML and loads data
 	
 	@EventHandler
-	public void onDeath(PlayerDeathEvent e)
+	public void onDeath(PlayerDeathEvent e) // makes items dropped on death invulnerable and gives them a glowing effect
 	{
 		List<ItemStack> drops = e.getDrops();
 		ItemStack[] dropsArray = new ItemStack[drops.size()];
@@ -61,7 +67,7 @@ public class PlayerEvents implements Listener {
 					}
 				}
 				
-			}, 20 * 120);
+			}, 2400); // two minutes
 		}
 		
 		e.getDrops().clear();
@@ -71,7 +77,7 @@ public class PlayerEvents implements Listener {
 	
 	
 	@EventHandler
-	public void onOpenChest(InventoryOpenEvent e)
+	public void onOpenChest(InventoryOpenEvent e) // code for locked chests
 	{
 		if (!(e.getInventory().getHolder() instanceof Chest)) { return; }
 		
@@ -133,7 +139,8 @@ public class PlayerEvents implements Listener {
 	}
 	
 	@EventHandler
-	public void onChestPlace(BlockPlaceEvent e)
+	public void onChestPlace(BlockPlaceEvent e) // records the location of chests
+												// also putting these two events (onChestPlace and onSignPlace) in the same function would take a lot less processing power i think :0
 	{
 		
 		if (!e.getBlock().getType().equals(Material.CHEST)) { return; }
@@ -142,7 +149,7 @@ public class PlayerEvents implements Listener {
 		Database.save(e.getPlayer(), loc, database, file);
 	}
 	
-	public void onSignPlace(BlockPlaceEvent e)
+	public void onSignPlace(BlockPlaceEvent e) // i literally dont know
 	{
 		if (!e.getBlock().getType().equals(Material.OAK_WALL_SIGN)) { return; }
 		
@@ -203,7 +210,6 @@ public class PlayerEvents implements Listener {
 						e.getPlayer().sendMessage("§c§oYou cannot alter " + Database.getOwner(loc, database, file).getName() + "'s chest!");
 						e.setCancelled(true);
 					}
-					
 					return;
 				}
 			}
@@ -223,13 +229,36 @@ public class PlayerEvents implements Listener {
 						e.getPlayer().sendMessage("§c§oYou cannot alter " + Database.getOwner(loc, database, file).getName() + "'s chest!");
 						e.setCancelled(true);
 					}
-					
 					return;
 				}
 			}
-
 		}
 	}
 	
-
+	//AFK functionality below
+	@EventHandler
+	public void hitProtect(EntityDamageEvent e) { // cancels damage event if the player is AFK
+		if (e.getEntity() instanceof Player) {
+			Player player = (Player) e.getEntity();
+			if (ess.getUser(player).isAfk()) {
+				
+				e.setCancelled(true);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void deAggro(EntityTargetLivingEntityEvent e) { // -------------- disables aggro if a mob targets an AFK player
+	
+		if (e.getTarget() instanceof Player && e.getEntity() instanceof Monster) {
+			
+			Player player = (Player) e.getTarget();
+			if (ess.getUser(player).isAfk()) {
+				
+				e.setCancelled(true);
+			}
+		}
+	}
 }
+
+

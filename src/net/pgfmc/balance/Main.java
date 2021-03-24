@@ -6,7 +6,7 @@ import net.pgfmc.balance.commands.Team;
 import net.pgfmc.balance.events.EntityEvents;
 import net.pgfmc.balance.events.PlayerEvents;
 
-public class Main extends JavaPlugin {
+public class Main extends JavaPlugin { // MAIN // initializes plugin
 	
 	public static Main plugin;
 	

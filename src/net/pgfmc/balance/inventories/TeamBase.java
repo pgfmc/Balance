@@ -6,7 +6,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
 
 public class TeamBase implements InventoryHolder {
 	
@@ -20,14 +19,23 @@ public class TeamBase implements InventoryHolder {
 	
 	public void init()
 	{
-		inv.setItem(0, createItem("Info", Material.OAK_SIGN));
+		ItemStack oakSign = new ItemStack(Material.OAK_SIGN, 1); // edited by Crimson -------- !
+		ItemMeta okesin = oakSign.getItemMeta();
+		okesin.setDisplayName("Info");
+		oakSign.setItemMeta(okesin);
 		
-		inv.setItem(2, createItem(""), Material.AIR
-				???6);
-		inv.setItem(3, createItem(""), Material.AIR);
-		inv.setItem(5, createItem(""));
-		inv.setItem(7, createItem(""));
-		inv.setItem(8, createItem(""));
+		inv.setItem(0, oakSign);
+		
+		ItemStack AIRgamg = new ItemStack(Material.AIR, 1);
+		ItemMeta AIRgaming = AIRgamg.getItemMeta();
+		AIRgaming.setDisplayName("");
+		AIRgamg.setItemMeta(AIRgaming);
+		
+		inv.setItem(2, AIRgamg);
+		inv.setItem(3, AIRgamg);
+		inv.setItem(5, AIRgamg);
+		inv.setItem(7, AIRgamg);
+		inv.setItem(8, AIRgamg);
 	}
 	
 	public ItemStack createItem(String name, Material mat)
@@ -41,7 +49,4 @@ public class TeamBase implements InventoryHolder {
 	
 	@Override
 	public Inventory getInventory() { return inv; }
-	
-	
-
 }

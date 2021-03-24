@@ -9,7 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class Database {
+public class Database { // JUST USE COREPROTECT ! ! ! ! ! !
 	
 	public static void save(Player owner, Location loc, FileConfiguration db, File file)
 	{

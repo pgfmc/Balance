@@ -6,7 +6,10 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class TeamObj {
+public class TeamObj { 
+					   /* teams class
+							*notes here*
+					   */ 
 	
 	UUID owner;
 	List<UUID> members;
