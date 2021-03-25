@@ -5,7 +5,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
-import net.pgfmc.balance.commands.Team;
 import net.pgfmc.balance.events.EntityEvents;
 import net.pgfmc.balance.events.PlayerEvents;
 
@@ -20,13 +19,12 @@ public class Main extends JavaPlugin { // MAIN // initializes plugin
 	public void onEnable()
 	{
 		plugin = this;
-		getCommand("team").setExecutor(new Team());
 		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
 		getServer().getPluginManager().registerEvents(new EntityEvents(), this);
 		
 	}
 	
-	public static CoreProtectAPI getCoreProtect() {
+	public static CoreProtectAPI getCoreProtect() { // Lets us use the CoreProtectAPI thing :)
 		
         Plugin plugin = Main.plugin.getServer().getPluginManager().getPlugin("CoreProtect");
      

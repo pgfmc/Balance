@@ -1,18 +1,15 @@
 package net.pgfmc.balance;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-
 public class Database { // JUST USE COREPROTECT ! ! ! ! ! ! how
 	
+	
+	
+	
+	
+	/* Commented out in case I ever want to revert back to how I used to do it
 	public static void save(Player owner, Location loc, FileConfiguration db, File file)
 	{
+		
 		db.set(loc.toString() + ".isLocked", false);
 		db.set(loc.toString() + ".owner", owner.getUniqueId().toString());
 		
@@ -34,6 +31,8 @@ public class Database { // JUST USE COREPROTECT ! ! ! ! ! ! how
 	{
 		return Bukkit.getPlayer(UUID.fromString(db.getString(loc.toString() + ".owner")));
 	}
+	
+	*/
 
 
 }
