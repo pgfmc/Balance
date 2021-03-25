@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
+import net.pgfmc.teams;
 import net.pgfmc.balance.events.EntityEvents;
 import net.pgfmc.balance.events.PlayerEvents;
 
@@ -39,6 +40,19 @@ public class Main extends JavaPlugin { // MAIN // initializes plugin
         if (CoreProtect.APIVersion() < 6) { return null; }
 
         return CoreProtect;
+	}
+	
+	public static Teams getTeamsPlugin() { // Lets us use the CoreProtectAPI thing :)
+		
+        Plugin plugin = Main.plugin.getServer().getPluginManager().getPlugin("Teams");
+     
+        // Check that CoreProtect is loaded
+        if (plugin == null || !(plugin instanceof Teams)) { return null; }
+
+        // Check that the API is enabled
+        Teams t = ((Teams) plugin);
+
+        return t;
 	}
 
 }

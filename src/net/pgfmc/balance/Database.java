@@ -1,8 +1,18 @@
 package net.pgfmc.balance;
 
+import org.bukkit.block.Block;
+
 public class Database { // JUST USE COREPROTECT ! ! ! ! ! ! how
 	
+	public static boolean isLocked(Block b)
+	{
+		return false;
+	}
 	
+	public static void saveLock(Block b, Team t)
+	{
+		
+	}
 	
 	
 	

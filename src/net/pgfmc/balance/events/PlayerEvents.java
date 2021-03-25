@@ -5,7 +5,19 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Barrel;
+import org.bukkit.block.BlastFurnace;
+import org.bukkit.block.Block;
+import org.bukkit.block.BrewingStand;
+import org.bukkit.block.Chest;
+import org.bukkit.block.Dispenser;
+import org.bukkit.block.Dropper;
+import org.bukkit.block.Furnace;
+import org.bukkit.block.Hopper;
+import org.bukkit.block.ShulkerBox;
+import org.bukkit.block.Smoker;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Item;
@@ -16,6 +28,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
@@ -66,6 +79,23 @@ public class PlayerEvents implements Listener {
 		
 		e.getDrops().clear();
 		p.sendMessage("§cYour dropped items are protected for 120 seconds.");
+	}
+	
+	
+	@EventHandler
+	public void onChestOpen(InventoryOpenEvent e)
+	{
+		// return; if the inventory doesn't belong to a Container I guess
+		if (!(e.getInventory().getHolder() instanceof Chest || e.getInventory().getHolder() instanceof Barrel || e.getInventory().getHolder() instanceof BlastFurnace || e.getInventory().getHolder() instanceof BrewingStand || e.getInventory().getHolder() instanceof Dispenser || e.getInventory().getHolder() instanceof Dropper || e.getInventory().getHolder() instanceof Furnace || e.getInventory().getHolder() instanceof Hopper || e.getInventory().getHolder() instanceof ShulkerBox || e.getInventory().getHolder() instanceof Smoker)) { return; }
+		
+		Player p = (Player) e.getPlayer(); // Player who opened the container
+		Location loc = e.getInventory().getLocation(); // Location of the container
+		Block b = loc.getBlock(); // Block of the container
+		
+		if (Database.isLocked(b))
+		{
+			
+		}
 	}
 	
 	
