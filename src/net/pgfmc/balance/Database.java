@@ -9,8 +9,6 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import sun.jvm.hotspot.debugger.win32.coff.COFFException;
-
 public class Database { // JUST USE COREPROTECT ! ! ! ! ! ! how
 	
 	public static void save(Player owner, Location loc, FileConfiguration db, File file)
