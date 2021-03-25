@@ -9,7 +9,9 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class Database { // JUST USE COREPROTECT ! ! ! ! ! !
+import sun.jvm.hotspot.debugger.win32.coff.COFFException;
+
+public class Database { // JUST USE COREPROTECT ! ! ! ! ! ! how
 	
 	public static void save(Player owner, Location loc, FileConfiguration db, File file)
 	{
@@ -22,6 +24,7 @@ public class Database { // JUST USE COREPROTECT ! ! ! ! ! !
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static boolean isLocked(Location loc, FileConfiguration db, File file)
@@ -33,5 +36,6 @@ public class Database { // JUST USE COREPROTECT ! ! ! ! ! !
 	{
 		return Bukkit.getPlayer(UUID.fromString(db.getString(loc.toString() + ".owner")));
 	}
+
 
 }

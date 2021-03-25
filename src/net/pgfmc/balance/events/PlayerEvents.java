@@ -64,6 +64,8 @@ public class PlayerEvents implements Listener {
 					if (!dropItem.isValid())
 					{
 						dropItem.setItemStack(drop);
+						dropItem.setGlowing(false);
+						dropItem.setInvulnerable(false);
 					}
 				}
 				
@@ -72,8 +74,8 @@ public class PlayerEvents implements Listener {
 		
 		e.getDrops().clear();
 		p.sendMessage("§cYour dropped items are protected for 120 seconds.");
-		p.sendMessage("§c§o/back to return to your items.");
 	}
+	
 	
 	
 	@EventHandler
@@ -138,6 +140,9 @@ public class PlayerEvents implements Listener {
 		e.setCancelled(true);
 	}
 	
+	
+	
+	
 	@EventHandler
 	public void onChestPlace(BlockPlaceEvent e) // records the location of chests
 												// also putting these two events (onChestPlace and onSignPlace) in the same function would take a lot less processing power i think :0
@@ -148,6 +153,9 @@ public class PlayerEvents implements Listener {
 		Location loc = e.getBlock().getLocation();
 		Database.save(e.getPlayer(), loc, database, file);
 	}
+	
+	
+	
 	
 	public void onSignPlace(BlockPlaceEvent e) // i literally dont know
 	{
@@ -234,6 +242,10 @@ public class PlayerEvents implements Listener {
 			}
 		}
 	}
+	
+	
+	
+	
 	
 	//AFK functionality below
 	@EventHandler

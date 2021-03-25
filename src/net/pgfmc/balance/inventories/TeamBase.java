@@ -19,17 +19,11 @@ public class TeamBase implements InventoryHolder {
 	
 	public void init()
 	{
-		ItemStack oakSign = new ItemStack(Material.OAK_SIGN, 1); // edited by Crimson -------- !
-		ItemMeta okesin = oakSign.getItemMeta();
-		okesin.setDisplayName("Info");
-		oakSign.setItemMeta(okesin);
+		ItemStack oakSign = createItem("Info", Material.OAK_SIGN); // Edited by bk --------- !
 		
 		inv.setItem(0, oakSign);
 		
-		ItemStack AIRgamg = new ItemStack(Material.AIR, 1);
-		ItemMeta AIRgaming = AIRgamg.getItemMeta();
-		AIRgaming.setDisplayName("");
-		AIRgamg.setItemMeta(AIRgaming);
+		ItemStack AIRgamg = createItem("", Material.AIR);
 		
 		inv.setItem(2, AIRgamg);
 		inv.setItem(3, AIRgamg);
