@@ -1,6 +1,7 @@
 name: Balance
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 version: 6.1.3
 =======
 <<<<<<< HEAD
@@ -17,6 +18,9 @@ version: 6.1.1
 version: 6.1.1
 >>>>>>> parent of 1414c75 (v6.2.0 (REVERT) (WIP))
 >>>>>>> parent of a33d74c (Fixed x2)
+=======
+version: 6.1.1
+>>>>>>> parent of 1414c75 (v6.2.0 (REVERT) (WIP))
 =======
 version: 6.1.1
 >>>>>>> parent of 1414c75 (v6.2.0 (REVERT) (WIP))
