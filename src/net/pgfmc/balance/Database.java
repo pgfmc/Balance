@@ -1,5 +1,7 @@
 package net.pgfmc.balance;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 import org.bukkit.block.Block;
 
 public class Database { // JUST USE COREPROTECT ! ! ! ! ! ! how
