@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+<<<<<<< HEAD
 import org.bukkit.block.Barrel;
 import org.bukkit.block.BlastFurnace;
 import org.bukkit.block.Block;
@@ -18,6 +19,12 @@ import org.bukkit.block.Furnace;
 import org.bukkit.block.Hopper;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.block.Smoker;
+=======
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Chest;
+import org.bukkit.block.Sign;
+import org.bukkit.block.data.Directional;
+>>>>>>> parent of 87a643e (Stable version)
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Item;
@@ -25,6 +32,7 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -33,6 +41,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import net.ess3.api.IEssentials;
+import net.pgfmc.balance.Database;
 import net.pgfmc.balance.Main;
 
 public class PlayerEvents implements Listener {
@@ -82,6 +91,7 @@ public class PlayerEvents implements Listener {
 	}
 	
 	
+<<<<<<< HEAD
 	@EventHandler
 	public void onChestOpen(InventoryOpenEvent e)
 	{
@@ -100,6 +110,9 @@ public class PlayerEvents implements Listener {
 	
 	
 	/* Commenting out to save for later if I ever need in case I fricked up
+=======
+	
+>>>>>>> parent of 87a643e (Stable version)
 	@EventHandler
 	public void onOpenChest(InventoryOpenEvent e) // code for locked chests
 	{
@@ -107,7 +120,7 @@ public class PlayerEvents implements Listener {
 		
 		Location loc = e.getInventory().getLocation();
 		
-		if (!Database.isLocked(loc, database, file)) { return; } // Checks if the chest is locked or not
+		if (!Database.isLocked(loc, database, file)) { return; }
 		if (Database.getOwner(loc, database, file).getUniqueId().equals(e.getPlayer().getUniqueId())) { return; }
 		
 		for (int x = -1; x < 2; x++)
@@ -266,7 +279,7 @@ public class PlayerEvents implements Listener {
 	}
 	
 	
-	*/
+	
 	
 	
 	//AFK functionality below
