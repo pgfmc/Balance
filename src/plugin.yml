@@ -1,5 +1,9 @@
 name: Balance
+<<<<<<< HEAD
 version: 6.2.0
+=======
+version: 6.1.1
+>>>>>>> parent of 87a643e (Stable version)
 api-version: 1.16
 author: bk
 main: net.pgfmc.balance.Main

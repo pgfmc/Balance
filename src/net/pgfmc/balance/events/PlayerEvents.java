@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.bukkit.block.Barrel;
 import org.bukkit.block.BlastFurnace;
 import org.bukkit.block.Block;
@@ -20,10 +21,15 @@ import org.bukkit.block.Hopper;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.block.Smoker;
 =======
+=======
+>>>>>>> parent of 87a643e (Stable version)
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.block.data.Directional;
+<<<<<<< HEAD
+>>>>>>> parent of 87a643e (Stable version)
+=======
 >>>>>>> parent of 87a643e (Stable version)
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -92,6 +98,7 @@ public class PlayerEvents implements Listener {
 	
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@EventHandler
 	public void onChestOpen(InventoryOpenEvent e)
 	{
@@ -110,6 +117,9 @@ public class PlayerEvents implements Listener {
 	
 	
 	/* Commenting out to save for later if I ever need in case I fricked up
+=======
+	
+>>>>>>> parent of 87a643e (Stable version)
 =======
 	
 >>>>>>> parent of 87a643e (Stable version)
