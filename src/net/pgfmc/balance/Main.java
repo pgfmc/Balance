@@ -5,15 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import net.pgfmc.teams;
-=======
 import net.pgfmc.balance.commands.Team;
->>>>>>> parent of 87a643e (Stable version)
-=======
-import net.pgfmc.balance.commands.Team;
->>>>>>> parent of 87a643e (Stable version)
 import net.pgfmc.balance.events.EntityEvents;
 import net.pgfmc.balance.events.PlayerEvents;
 
