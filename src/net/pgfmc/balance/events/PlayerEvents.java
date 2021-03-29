@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import org.bukkit.block.Barrel;
 import org.bukkit.block.BlastFurnace;
 import org.bukkit.block.Block;
@@ -20,17 +17,6 @@ import org.bukkit.block.Furnace;
 import org.bukkit.block.Hopper;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.block.Smoker;
-=======
-=======
->>>>>>> parent of 87a643e (Stable version)
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.Chest;
-import org.bukkit.block.Sign;
-import org.bukkit.block.data.Directional;
-<<<<<<< HEAD
->>>>>>> parent of 87a643e (Stable version)
-=======
->>>>>>> parent of 87a643e (Stable version)
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Item;
@@ -38,7 +24,6 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -97,8 +82,7 @@ public class PlayerEvents implements Listener {
 	}
 	
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	@EventHandler
 	public void onChestOpen(InventoryOpenEvent e)
 	{
@@ -117,12 +101,6 @@ public class PlayerEvents implements Listener {
 	
 	
 	/* Commenting out to save for later if I ever need in case I fricked up
-=======
-	
->>>>>>> parent of 87a643e (Stable version)
-=======
-	
->>>>>>> parent of 87a643e (Stable version)
 	@EventHandler
 	public void onOpenChest(InventoryOpenEvent e) // code for locked chests
 	{
@@ -288,7 +266,7 @@ public class PlayerEvents implements Listener {
 		}
 	}
 	
-	
+	*/
 	
 	
 	
