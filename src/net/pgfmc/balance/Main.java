@@ -1,24 +1,14 @@
 package net.pgfmc.balance;
 
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-<<<<<<< HEAD
 import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import net.pgfmc.teams;
-=======
+
 import net.pgfmc.balance.commands.Team;
->>>>>>> parent of 87a643e (Stable version)
-=======
-import net.pgfmc.balance.commands.Team;
-<<<<<<< HEAD
-=======
->>>>>>> d07da1bca10714e99b5e22ef2dea15e4a15769aa
-=======
->>>>>>> parent of 87a643e (Stable version)
->>>>>>> parent of a33d74c (Fixed x2)
 import net.pgfmc.balance.events.EntityEvents;
 import net.pgfmc.balance.events.PlayerEvents;
 
@@ -33,11 +23,40 @@ public class Main extends JavaPlugin { // MAIN // initializes plugin
 	public void onEnable()
 	{
 		plugin = this;
+		getCommand("team").setExecutor(new Team());
 		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
 		getServer().getPluginManager().registerEvents(new EntityEvents(), this);
 		
 	}
 	
+	public static CoreProtectAPI getCoreProtect() {
+		
+        Plugin plugin = Main.plugin.getServer().getPluginManager().getPlugin("CoreProtect");
+     
+        // Check that CoreProtect is loaded
+        if (plugin == null || !(plugin instanceof CoreProtect)) { return null; }
 
+        // Check that the API is enabled
+        CoreProtectAPI CoreProtect = ((CoreProtect) plugin).getAPI();
+        if (CoreProtect.isEnabled() == false) { return null; }
+
+        // Check that a compatible version of the API is loaded
+        if (CoreProtect.APIVersion() < 6) { return null; }
+
+        return CoreProtect;
+	}
+	
+	public static Teams getTeamsPlugin() { // Lets us use the CoreProtectAPI thing :)
+		
+        Plugin plugin = Main.plugin.getServer().getPluginManager().getPlugin("Teams");
+     
+        // Check that CoreProtect is loaded
+        if (plugin == null || !(plugin instanceof Teams)) { return null; }
+
+        // Check that the API is enabled
+        Teams t = ((Teams) plugin);
+
+        return t;
+	}
 
 }
