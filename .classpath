@@ -11,11 +11,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/ProgramData/javaLib/EssentialsX-2.18.2.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="C:/ProgramData/javaLib/CoreProtect-19.5.jar"/>
+	<classpathentry kind="lib" path="C:/ProgramData/javaLib/spigot-1.17.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
